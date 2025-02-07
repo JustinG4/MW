@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { NeumorphicButton } from "@/components/ui/neumorphic-button";
-import { User, ChartNetwork, MessagesSquare, Map } from "lucide-react";
+import { Users, ChartNetwork, MessagesSquare, Wallet } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface DashboardSectionProps {
@@ -24,10 +24,10 @@ export default function GameDashboard() {
           {/* Navigation Icons */}
           <div className="flex justify-end gap-2 mb-4">
             {[
-              { icon: User, label: "Profile", color: "text-blue-400" },
+              { icon: Users, label: "Profile", color: "text-blue-400" },
               { icon: ChartNetwork, label: "Network", color: "text-yellow-400" },
               { icon: MessagesSquare, label: "Messages", color: "text-emerald-400" },
-              { icon: Map, label: "Map", color: "text-purple-400" }
+              { icon: Wallet, label: "Wallet", color: "text-purple-400" }
             ].map((item) => (
               <motion.div
                 key={item.label}
