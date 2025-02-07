@@ -1,29 +1,61 @@
+import { ChevronLeft, Users, Mail, Settings, Network } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Settings, Mail, Users, Network } from "lucide-react";
-import ResourceCounter from "../game/ResourceCounter";
+
+interface ResourceProps {
+  type: "green" | "yellow" | "blue";
+  amount: number;
+}
+
+const Resource = ({ type, amount }: ResourceProps) => {
+  const getStyles = () => {
+    switch (type) {
+      case "green":
+        return "from-emerald-500/20 to-emerald-500/10 border-emerald-500/30";
+      case "yellow":
+        return "from-yellow-500/20 to-yellow-500/10 border-yellow-500/30";
+      case "blue":
+        return "from-cyan-500/20 to-cyan-500/10 border-cyan-500/30";
+    }
+  };
+
+  return (
+    <div className={`
+      px-3 py-1.5 
+      bg-gradient-to-r ${getStyles()}
+      rounded border
+      backdrop-blur-sm
+    `}>
+      <span className="font-mono text-sm text-white">
+        {amount.toLocaleString()}
+      </span>
+    </div>
+  );
+};
 
 export default function TopBar() {
   return (
     <div className="h-16 border-b border-cyan-500/20 bg-gradient-to-r from-black/60 to-black/40">
       <div className="h-full w-full flex items-center justify-between px-6">
-        {/* Back button */}
+        {/* Back Button */}
         <Button 
-          variant="ghost" 
+          variant="ghost"
           size="icon"
-          className="relative w-10 h-10 rounded-full bg-white/5 hover:bg-cyan-500/20 hover:text-cyan-400 transition-all group"
+          className="relative w-10 h-10 rounded-full bg-black/40 hover:bg-cyan-500/20 transition-all group"
         >
-          <div className="absolute inset-0 rounded-full border border-cyan-500/20 group-hover:border-cyan-500/40" />
-          <ChevronLeft className="h-5 w-5" />
+          <div className="absolute inset-0 rounded-full border border-cyan-500/30 group-hover:border-cyan-500/50" />
+          <ChevronLeft className="h-5 w-5 text-white" />
         </Button>
 
-        {/* Right side resources and icons */}
+        {/* Right Side */}
         <div className="flex items-center gap-8">
+          {/* Resources */}
           <div className="flex gap-3">
-            <ResourceCounter type="green-crystal" amount={5606} />
-            <ResourceCounter type="yellow-crystal" amount={5800} />
-            <ResourceCounter type="blue-orb" amount={25600} />
+            <Resource type="green" amount={5606} />
+            <Resource type="yellow" amount={5800} />
+            <Resource type="blue" amount={25600} />
           </div>
 
+          {/* Action Icons */}
           <div className="flex gap-2">
             {[
               { icon: Users, label: "Social" },
@@ -35,10 +67,10 @@ export default function TopBar() {
                 key={item.label}
                 variant="ghost"
                 size="icon"
-                className="w-10 h-10 rounded-full hover:bg-cyan-500/20 hover:text-cyan-400 transition-colors relative group"
+                className="relative w-10 h-10 rounded-full hover:bg-cyan-500/20 transition-all group"
               >
                 <div className="absolute inset-0 rounded-full border border-cyan-500/20 group-hover:border-cyan-500/40" />
-                <item.icon className="h-5 w-5" />
+                <item.icon className="h-5 w-5 text-white" />
               </Button>
             ))}
           </div>
