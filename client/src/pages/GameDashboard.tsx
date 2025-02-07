@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { NeumorphicButton } from "@/components/ui/neumorphic-button";
-import { Play, Pause, Home, User, ArrowLeft, Users, Mail, Settings, Network } from "lucide-react";
+import { Play, Pause, Users, Mail, Settings, Network } from "lucide-react";
 
 interface DashboardSectionProps {
   children: ReactNode;
@@ -17,26 +17,24 @@ export default function GameDashboard() {
   return (
     <div className="min-h-screen bg-background p-8">
       {/* Main Controls */}
-      <div className="grid grid-cols-3 gap-8 mb-8">
-        <div className="col-span-1 space-y-6">
-          {/* Media Controls */}
-          <div className="flex justify-center gap-4">
-            <NeumorphicButton variant="raised" className="p-4">
-              <Play className="w-6 h-6 text-accent" />
-            </NeumorphicButton>
-            <NeumorphicButton variant="raised" className="p-4">
-              <Pause className="w-6 h-6 text-accent" />
-            </NeumorphicButton>
-          </div>
+      <div className="max-w-4xl mx-auto grid grid-cols-1 gap-8 mb-8">
+        {/* Media Controls */}
+        <div className="flex justify-center gap-4">
+          <NeumorphicButton variant="raised" className="p-4">
+            <Play className="w-6 h-6 text-accent" />
+          </NeumorphicButton>
+          <NeumorphicButton variant="raised" className="p-4">
+            <Pause className="w-6 h-6 text-accent" />
+          </NeumorphicButton>
+        </div>
 
-          {/* Progress Bar */}
-          <div className="h-2 bg-surface rounded-full shadow-neumorphic">
-            <div className="h-full w-3/4 bg-accent/20 rounded-full shadow-neumorphic-pressed" />
-          </div>
+        {/* Progress Bar */}
+        <div className="h-2 bg-surface rounded-full shadow-neumorphic w-full max-w-md mx-auto">
+          <div className="h-full w-3/4 bg-accent/20 rounded-full shadow-neumorphic-pressed" />
         </div>
 
         {/* Stats Display with Icons Above */}
-        <div className="col-span-2 space-y-6">
+        <div className="w-full max-w-2xl mx-auto">
           {/* Navigation Icons */}
           <div className="flex justify-end gap-2 mb-4">
             {[
@@ -56,14 +54,14 @@ export default function GameDashboard() {
           </div>
 
           {/* Stats Container */}
-          <div className="p-6 rounded-2xl bg-surface shadow-neumorphic">
-            <h2 className="text-accent mb-4 font-medium">Completed Tasks</h2>
-            <div className="h-3 bg-surface rounded-full shadow-neumorphic mb-6">
+          <div className="p-8 rounded-2xl bg-surface shadow-neumorphic min-h-[400px]">
+            <h2 className="text-accent text-xl mb-6 font-medium">Completed Tasks</h2>
+            <div className="h-4 bg-surface rounded-full shadow-neumorphic mb-8">
               <div className="h-full w-[75%] bg-accent/20 rounded-full shadow-neumorphic-pressed" />
             </div>
 
-            <h2 className="text-accent mb-4 font-medium">Postponed Tasks</h2>
-            <div className="h-3 bg-surface rounded-full shadow-neumorphic">
+            <h2 className="text-accent text-xl mb-6 font-medium">Postponed Tasks</h2>
+            <div className="h-4 bg-surface rounded-full shadow-neumorphic">
               <div className="h-full w-[30%] bg-accent/20 rounded-full shadow-neumorphic-pressed" />
             </div>
           </div>
@@ -71,7 +69,7 @@ export default function GameDashboard() {
       </div>
 
       {/* Bottom Controls */}
-      <div className="flex justify-between items-center">
+      <div className="max-w-4xl mx-auto flex justify-between items-center mt-8">
         <div className="flex gap-2">
           {Array.from({ length: 5 }).map((_, i) => (
             <NeumorphicButton
