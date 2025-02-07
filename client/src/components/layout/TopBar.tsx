@@ -4,17 +4,17 @@ import ResourceCounter from "../game/ResourceCounter";
 
 export default function TopBar() {
   return (
-    <div className="h-16 w-full flex items-center justify-between px-4 bg-black/40 backdrop-blur-sm border-b border-cyan-500/20">
+    <div className="h-16 w-full flex items-center justify-between px-6 bg-black/30 backdrop-blur-sm border-b border-cyan-500/20">
       <Button 
         variant="ghost" 
         size="icon"
-        className="rounded-full bg-white/10 hover:bg-cyan-500/20 hover:text-cyan-400 transition-colors"
+        className="rounded-full bg-white/5 hover:bg-cyan-500/20 hover:text-cyan-400 transition-colors"
       >
         <ChevronLeft className="h-5 w-5" />
       </Button>
 
-      <div className="flex items-center gap-6">
-        <div className="flex gap-4">
+      <div className="flex items-center gap-8">
+        <div className="flex gap-3">
           <ResourceCounter
             type="green-crystal"
             amount={5606}
@@ -32,7 +32,7 @@ export default function TopBar() {
           />
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           {[
             { icon: Users, label: "Social" },
             { icon: Mail, label: "Mail" },
@@ -43,7 +43,7 @@ export default function TopBar() {
               key={item.label}
               variant="ghost"
               size="icon"
-              className="hover:text-cyan-400 hover:bg-cyan-500/20 transition-colors"
+              className="w-10 h-10 rounded-full hover:text-cyan-400 hover:bg-cyan-500/20 transition-colors"
             >
               <item.icon className="h-5 w-5" />
             </Button>
