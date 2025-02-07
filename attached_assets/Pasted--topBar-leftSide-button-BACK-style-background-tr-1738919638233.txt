@@ -1,0 +1,292 @@
+{
+  "topBar": {
+    "leftSide": {
+      "button": "BACK",
+      "style": {
+        "background": "translucent circular button",
+        "icon": "white arrow",
+        "glow": "cyan edge glow",
+        "hover": "light blue highlight"
+      }
+    },
+    "rightSide": {
+      "resources": [
+        {
+          "type": "green-crystal",
+          "amount": 5606,
+          "style": {
+            "icon": "hexagonal emerald crystal",
+            "textColor": "white",
+            "background": "dark translucent panel",
+            "glow": "subtle green"
+          }
+        },
+        {
+          "type": "yellow-crystal",
+          "amount": 5800,
+          "style": {
+            "icon": "hexagonal amber crystal",
+            "textColor": "white",
+            "background": "dark translucent panel",
+            "glow": "subtle yellow"
+          }
+        },
+        {
+          "type": "blue-orb",
+          "amount": 25600,
+          "style": {
+            "icon": "circular energy orb",
+            "textColor": "white",
+            "background": "dark translucent panel",
+            "glow": "bright cyan"
+          }
+        }
+      ],
+      "icons": {
+        "items": ["social", "mail", "settings", "network"],
+        "style": {
+          "color": "white",
+          "size": "medium",
+          "background": "none",
+          "spacing": "evenly distributed",
+          "hover": "cyan glow"
+        }
+      }
+    }
+  },
+  "leftMenu": {
+    "style": {
+      "background": "dark translucent panel",
+      "layout": "vertical stack",
+      "spacing": "20px between items",
+      "borders": "subtle angular separators",
+      "hover": "cyan highlight"
+    },
+    "items": [
+      {
+        "text": "排行榜",
+        "translation": "Leaderboard",
+        "style": {
+          "icon": "circular medal design",
+          "iconGlow": "none"
+        }
+      },
+      {
+        "text": "战斗履历",
+        "translation": "Battle History",
+        "style": {
+          "icon": "triangular military insignia",
+          "iconGlow": "active cyan"
+        }
+      },
+      {
+        "text": "技能",
+        "translation": "Skills",
+        "style": {
+          "icon": "hexagonal skill symbol",
+          "iconGlow": "none"
+        }
+      },
+      {
+        "text": "符文",
+        "translation": "Runes",
+        "style": {
+          "icon": "mystical rune symbol",
+          "iconGlow": "none"
+        }
+      },
+      {
+        "text": "成就",
+        "translation": "Achievements",
+        "style": {
+          "icon": "star badge",
+          "iconGlow": "none"
+        }
+      }
+    ]
+  },
+  "mainContent": {
+    "style": {
+      "background": "dark gradient with light patterns",
+      "layout": "flex column",
+      "padding": "30px",
+      "borderRadius": "5px"
+    },
+    "playerProfile": {
+      "name": "JHON GIGGER",
+      "level": 56,
+      "style": {
+        "nameColor": "cyan",
+        "levelBadge": {
+          "shape": "hexagonal",
+          "background": "golden gradient",
+          "border": "white glow"
+        },
+        "avatar": {
+          "frame": "premium metallic border",
+          "background": "dark gradient",
+          "glow": "subtle blue"
+        }
+      }
+    },
+    "statistics": {
+      "title": "数据统计",
+      "translation": "Data Statistics",
+      "style": {
+        "progressBars": {
+          "height": "12px",
+          "background": "dark translucent",
+          "fillColor": "bright cyan",
+          "animation": "pulse on hover",
+          "borderRadius": "6px"
+        },
+        "labels": {
+          "color": "white",
+          "font": "futuristic sans-serif",
+          "size": "14px"
+        },
+        "values": {
+          "color": "cyan",
+          "font": "monospace",
+          "size": "16px",
+          "weight": "bold"
+        }
+      },
+      "metrics": [
+        {
+          "name": "总场数",
+          "translation": "Total Score",
+          "value": 200,
+          "winRate": "35%",
+          "matches": 125
+        },
+        {
+          "name": "匹配赛",
+          "translation": "Equipment",
+          "value": 100,
+          "winRate": "35%",
+          "matches": 125
+        },
+        {
+          "name": "排位赛",
+          "translation": "Ranking",
+          "value": 80,
+          "winRate": "35%",
+          "matches": 125
+        },
+        {
+          "name": "人机对战",
+          "translation": "PvP Battles",
+          "value": 20,
+          "winRate": "35%",
+          "matches": 125
+        }
+      ]
+    }
+  },
+  "rightPanel": {
+    "title": "最近战绩",
+    "translation": "Recent Battle Records",
+    "style": {
+      "background": "darker gradient",
+      "border": "angular geometric patterns",
+      "glow": "edge highlight in cyan",
+      "matchCards": {
+        "background": "semi-transparent black",
+        "border": "geometric accent lines",
+        "hover": "bright highlight",
+        "animation": "slide in from right"
+      }
+    },
+    "matches": [
+      {
+        "date": "12/06/2016",
+        "rewards": {
+          "currency": 500,
+          "experience": 200,
+          "style": {
+            "currencyIcon": "golden hexagon",
+            "expIcon": "blue diamond",
+            "textGlow": "matching colors"
+          }
+        },
+        "type": "排位赛",
+        "translation": "Ranked Match"
+      },
+      {
+        "date": "12/06/2016",
+        "rewards": {
+          "currency": 500,
+          "experience": 200,
+          "style": {
+            "currencyIcon": "golden hexagon",
+            "expIcon": "blue diamond",
+            "textGlow": "matching colors"
+          }
+        },
+        "type": "排位赛",
+        "translation": "Ranked Match"
+      },
+      {
+        "date": "12/06/2016",
+        "rewards": {
+          "currency": 500,
+          "experience": 200,
+          "style": {
+            "currencyIcon": "golden hexagon",
+            "expIcon": "blue diamond",
+            "textGlow": "matching colors"
+          }
+        },
+        "type": "排位赛",
+        "translation": "Ranked Match"
+      },
+      {
+        "date": "12/06/2016",
+        "rewards": {
+          "currency": 500,
+          "experience": 200,
+          "style": {
+            "currencyIcon": "golden hexagon",
+            "expIcon": "blue diamond",
+            "textGlow": "matching colors"
+          }
+        },
+        "type": "排位赛",
+        "translation": "Ranked Match"
+      }
+    ]
+  },
+  "theme": {
+    "primaryColors": {
+      "background": "dark blue gradient",
+      "accent": "cyan",
+      "text": "white",
+      "highlights": "bright cyan",
+      "secondary": "golden yellow"
+    },
+    "style": {
+      "overall": "sci-fi/futuristic",
+      "fontFamily": "futuristic sans-serif",
+      "cornerStyle": "angular geometric",
+      "shadowStyle": "soft cyan glow"
+    },
+    "visualEffects": {
+      "panels": {
+        "transparency": "40-60%",
+        "blur": "subtle gaussian",
+        "borders": "geometric patterns"
+      },
+      "animations": {
+        "transitions": "smooth fade",
+        "hover": "gentle bright glow",
+        "loading": "pulsing cyan"
+      },
+      "patterns": {
+        "background": "subtle hex grid",
+        "accents": "angular lines",
+        "highlights": "glowing edges"
+      }
+    }
+  }
+}
