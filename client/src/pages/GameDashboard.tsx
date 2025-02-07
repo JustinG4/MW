@@ -1,13 +1,6 @@
 import { ReactNode } from 'react';
 import { NeumorphicButton } from "@/components/ui/neumorphic-button";
-import { Play, Pause, Home, User, ArrowLeft } from "lucide-react";
-
-// The following imports are not used in the edited code, but were present in the original and might be needed elsewhere.
-//import TopBar from "@/components/layout/TopBar";
-//import LeftMenu from "@/components/layout/LeftMenu";
-//import RightPanel from "@/components/layout/RightPanel";
-//import PlayerProfile from "@/components/game/PlayerProfile";
-//import BattleStats from "@/components/game/BattleStats";
+import { Play, Pause, Home, User, ArrowLeft, Users, Mail, Settings, Network } from "lucide-react";
 
 interface DashboardSectionProps {
   children: ReactNode;
@@ -23,19 +16,6 @@ const DashboardSection = ({ children, className = "" }: DashboardSectionProps) =
 export default function GameDashboard() {
   return (
     <div className="min-h-screen bg-background p-8">
-      {/* Navigation Section */}
-      <div className="flex gap-4 mb-8">
-        <NeumorphicButton variant="raised" className="p-3">
-          <Home className="w-5 h-5 text-accent-muted" />
-        </NeumorphicButton>
-        <NeumorphicButton variant="raised" className="p-3">
-          <User className="w-5 h-5 text-accent-muted" />
-        </NeumorphicButton>
-        <NeumorphicButton variant="raised" className="p-3">
-          <ArrowLeft className="w-5 h-5 text-accent-muted" />
-        </NeumorphicButton>
-      </div>
-
       {/* Main Controls */}
       <div className="grid grid-cols-3 gap-8 mb-8">
         <div className="col-span-1 space-y-6">
@@ -55,16 +35,37 @@ export default function GameDashboard() {
           </div>
         </div>
 
-        {/* Stats Display */}
-        <div className="col-span-2 p-6 rounded-2xl bg-surface shadow-neumorphic">
-          <h2 className="text-accent mb-4 font-medium">Completed Tasks</h2>
-          <div className="h-3 bg-surface rounded-full shadow-neumorphic mb-6">
-            <div className="h-full w-[75%] bg-accent/20 rounded-full shadow-neumorphic-pressed" />
+        {/* Stats Display with Icons Above */}
+        <div className="col-span-2 space-y-6">
+          {/* Navigation Icons */}
+          <div className="flex justify-end gap-2 mb-4">
+            {[
+              { icon: Users, label: "Social" },
+              { icon: Mail, label: "Mail" },
+              { icon: Settings, label: "Settings" },
+              { icon: Network, label: "Network" }
+            ].map((item) => (
+              <NeumorphicButton
+                key={item.label}
+                variant="raised"
+                className="p-3"
+              >
+                <item.icon className="w-5 h-5 text-accent-muted" />
+              </NeumorphicButton>
+            ))}
           </div>
 
-          <h2 className="text-accent mb-4 font-medium">Postponed Tasks</h2>
-          <div className="h-3 bg-surface rounded-full shadow-neumorphic">
-            <div className="h-full w-[30%] bg-accent/20 rounded-full shadow-neumorphic-pressed" />
+          {/* Stats Container */}
+          <div className="p-6 rounded-2xl bg-surface shadow-neumorphic">
+            <h2 className="text-accent mb-4 font-medium">Completed Tasks</h2>
+            <div className="h-3 bg-surface rounded-full shadow-neumorphic mb-6">
+              <div className="h-full w-[75%] bg-accent/20 rounded-full shadow-neumorphic-pressed" />
+            </div>
+
+            <h2 className="text-accent mb-4 font-medium">Postponed Tasks</h2>
+            <div className="h-3 bg-surface rounded-full shadow-neumorphic">
+              <div className="h-full w-[30%] bg-accent/20 rounded-full shadow-neumorphic-pressed" />
+            </div>
           </div>
         </div>
       </div>
