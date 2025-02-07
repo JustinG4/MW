@@ -45,13 +45,13 @@ export default function GameDashboard() {
             </div>
           </div>
 
-          {/* Number Controls - Centered Below Stats */}
-          <div className="flex justify-center gap-2 mt-8">
+          {/* Number Controls - Centered */}
+          <div className="flex justify-center gap-2 mt-4">
             {Array.from({ length: 5 }).map((_, i) => (
               <NeumorphicButton
                 key={i}
                 variant="switch"
-                isActive={i === 2}
+                isActive={false}
                 className="w-12 h-12 flex items-center justify-center text-accent-muted"
               >
                 {i + 1}
