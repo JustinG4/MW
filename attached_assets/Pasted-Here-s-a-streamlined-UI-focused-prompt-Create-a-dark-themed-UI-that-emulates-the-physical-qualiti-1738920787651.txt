@@ -1,0 +1,66 @@
+Here's a streamlined UI-focused prompt:
+
+"Create a dark-themed UI that emulates the physical qualities of professional MIDI controllers and audio hardware. The interface should look and feel like it's made of premium rubber/silicone materials.
+
+Visual Elements:
+
+1. Material Properties:
+- Soft-touch rubber texture throughout
+- Subtle raised surfaces for interactive elements
+- Matte finish with minimal glare
+- Gentle shadows suggesting physical depth
+- Frosted/translucent elements for indicators
+
+2. Color Palette:
+- Deep charcoal base color
+- White/light grey for active elements
+- Subtle metallic highlights
+- Semi-transparent whites for progress bars
+- Dark grey for secondary elements
+
+3. UI Components:
+- Header Section:
+  * Login/Sign up buttons with rubber texture
+  * Search bar with dark finish
+  * Two main control dials
+  
+- Control Elements:
+  * Large play/pause buttons with tactile appearance
+  * Horizontal slider with metallic track
+  * Toggle switch with physical throw
+  * Three dropdown menus with rubber finish
+  * Navigation arrows
+  
+- Visualization Area:
+  * Bar graph with frosted white bars
+  * Numbered pagination (1-5)
+  * Star/favorite buttons
+  * Plus/minus controls
+  
+- Progress Indicators:
+  * "Completed Tasks" progress bar (75%)
+  * "Postponed Tasks" progress bar (30%)
+  
+- Navigation:
+  * Home icon
+  * User profile icon
+  * Back/return icon
+  * All with rubber-like finish
+
+4. Design Details:
+- All buttons should appear slightly raised
+- Interactive elements need subtle shadows
+- Rounded corners throughout
+- Gentle gradients to suggest dimensionality
+- Soft highlighting on edges
+- Inset appearance for tracks and slots
+
+5. Visual Feedback:
+- Subtle depression effect on button press
+- Gentle highlight on hover
+- Soft glow for active states
+- Smooth transitions between states
+
+The overall aesthetic should make users feel like they're interacting with a premium piece of audio hardware rather than a digital interface. Every element should appear touchable and physical, with the characteristic soft-touch finish of high-end MIDI controllers."
+
+This prompt focuses purely on the visual and tactile aspects of the UI, without getting into functionality or implementation details. Would you like me to expand on any particular aspect of the visual design?
