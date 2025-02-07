@@ -6,9 +6,18 @@ import BattleStats from "@/components/game/BattleStats";
 
 export default function GameDashboard() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
-      {/* Subtle hexagonal pattern background */}
-      <div className="fixed inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGgtNnYxMmgtNnYtNmgtNnYxMmgxOHYtNmgtNnYtNnptLTYtNmg2djZoLTZ6IiBmaWxsPSJyZ2JhKDAsIDI1NSwgMjU1LCAwLjAyKSIvPjwvZz48L3N2Zz4=')] opacity-30"></div>
+    <div className="min-h-screen bg-[#070B14] text-white">
+      {/* Geometric pattern overlay */}
+      <div 
+        className="fixed inset-0 pointer-events-none opacity-10"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px'
+        }}
+      />
 
       <div className="relative h-screen flex flex-col">
         <TopBar />
@@ -16,17 +25,19 @@ export default function GameDashboard() {
         <div className="flex-1 flex">
           <LeftMenu />
 
-          {/* Empty central area for game embedding */}
-          <main className="flex-1 bg-black/20 backdrop-blur-sm">
-            {/* Your game will be embedded here */}
+          {/* Empty central game container */}
+          <main className="flex-1 relative bg-gradient-to-b from-black/40 to-black/20">
+            <div className="absolute inset-0 border border-cyan-500/10" />
           </main>
 
-          <div className="w-80 flex flex-col">
-            <div className="p-4">
+          {/* Right side stats and battle history */}
+          <div className="w-[420px] bg-black/40 border-l border-cyan-500/20">
+            <div className="p-6">
               <PlayerProfile />
               <BattleStats />
             </div>
           </div>
+
           <RightPanel />
         </div>
       </div>
