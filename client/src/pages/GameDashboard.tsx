@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { NeumorphicButton } from "@/components/ui/neumorphic-button";
-import { Users, Mail, Settings, Network } from "lucide-react";
+import { User, ChartNetwork, MessagesSquare, Map } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface DashboardSectionProps {
   children: ReactNode;
@@ -23,18 +24,28 @@ export default function GameDashboard() {
           {/* Navigation Icons */}
           <div className="flex justify-end gap-2 mb-4">
             {[
-              { icon: Users, label: "Social", color: "text-blue-400" },
-              { icon: Mail, label: "Mail", color: "text-yellow-400" },
-              { icon: Settings, label: "Settings", color: "text-emerald-400" },
-              { icon: Network, label: "Network", color: "text-purple-400" }
+              { icon: User, label: "Profile", color: "text-blue-400" },
+              { icon: ChartNetwork, label: "Network", color: "text-yellow-400" },
+              { icon: MessagesSquare, label: "Messages", color: "text-emerald-400" },
+              { icon: Map, label: "Map", color: "text-purple-400" }
             ].map((item) => (
-              <NeumorphicButton
+              <motion.div
                 key={item.label}
-                variant="raised"
-                className="p-3"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <item.icon className={`w-5 h-5 ${item.color}`} />
-              </NeumorphicButton>
+                <NeumorphicButton
+                  variant="raised"
+                  className="p-3"
+                >
+                  <motion.div
+                    initial={{ rotate: 0 }}
+                    whileHover={{ rotate: 5 }}
+                  >
+                    <item.icon className={`w-5 h-5 ${item.color}`} />
+                  </motion.div>
+                </NeumorphicButton>
+              </motion.div>
             ))}
           </div>
 
@@ -48,14 +59,24 @@ export default function GameDashboard() {
           {/* Number Controls - Centered */}
           <div className="flex justify-center gap-2 mt-4">
             {Array.from({ length: 5 }).map((_, i) => (
-              <NeumorphicButton
+              <motion.div
                 key={i}
-                variant="switch"
-                isActive={false}
-                className="w-12 h-12 flex items-center justify-center text-accent-muted"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {i + 1}
-              </NeumorphicButton>
+                <NeumorphicButton
+                  variant="switch"
+                  isActive={false}
+                  className="w-12 h-12 flex items-center justify-center text-accent-muted"
+                >
+                  <motion.span
+                    initial={{ y: 0 }}
+                    whileHover={{ y: -2 }}
+                  >
+                    {i + 1}
+                  </motion.span>
+                </NeumorphicButton>
+              </motion.div>
             ))}
           </div>
         </div>
