@@ -11,3 +11,7 @@
     @apply font-sans antialiased bg-background text-accent;
   }
 }
+.shadow-neumorphic-inset {
+  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.2),
+              inset -6px -6px 12px rgba(255, 255, 255, 0.1);
+}

@@ -2,6 +2,10 @@ import { ReactNode } from 'react';
 import { NeumorphicButton } from "@/components/ui/neumorphic-button";
 import { Users, ChartNetwork, MessagesSquare, Wallet } from "lucide-react";
 import { motion } from "framer-motion";
+import TopBar from "@/components/layout/TopBar";
+import LeftMenu from "@/components/layout/LeftMenu";
+import RightPanel from "@/components/layout/RightPanel";
+import GameContainer from "@/components/game/GameContainer";
 
 interface DashboardSectionProps {
   children: ReactNode;
@@ -14,13 +18,20 @@ const DashboardSection = ({ children, className = "" }: DashboardSectionProps) =
   </div>
 );
 
+interface DashboardSectionProps {
+  title: string;
+  value: string;
+  change: string;
+  isPositive: boolean;
+}
+
 export default function GameDashboard() {
   return (
     <div className="min-h-screen bg-background p-8">
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Stats Display with Icons Above */}
-        <div className="w-full max-w-2xl mx-auto">
+        <div className="w-full max-w-6xl mx-auto">
           {/* Navigation Icons */}
           <div className="flex justify-end gap-2 mb-4">
             {[
@@ -50,9 +61,22 @@ export default function GameDashboard() {
           </div>
 
           {/* Stats Container */}
-          <div className="p-12 rounded-2xl bg-surface shadow-neumorphic min-h-[500px] mb-8">
-            <div className="flex items-center justify-center h-full">
-              <span className="text-accent-muted text-lg">No content to display</span>
+          <div className="md:p-12 rounded-2xl bg-surface shadow-neumorphic min-h-[700px] w-full mb-8">
+            <div className="flex items-center justify-center h-full relative">
+              <iframe 
+                src="/memedom/index.html"
+                className="w-full h-full rounded-xl"
+                style={{ 
+                  minHeight: '576px',  // Match canvas height
+                  maxWidth: '1024px',   // Match canvas width
+                  border: 'none'
+                }}
+              />
+              
+              {/* Overlapping Border - Higher z-index */}
+              <div className="absolute inset-0 rounded-xl pointer-events-none z-10">
+                <div className="absolute inset-0 rounded-xl border-2 border-surface/50 shadow-[inset_0_0_8px_rgba(0,0,0,0.3)]" />
+              </div>
             </div>
           </div>
 

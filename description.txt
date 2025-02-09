@@ -1,0 +1,16 @@
+New players can choose to be in a guild or stay solo
+Guilds are tied to a particular memecoin. To be in a guild, you must pay an entry fee in the memecoin that represents that guild (web3 integration - thirdweb)
+    These entry fees fuel the guild’s Treasury
+        The guild’s treasury is used to pay out players each week based on leaderboards
+            Each week, all of the losing guilds treasuries are liquidated and added to the winning guilds treasury
+            Leaderboards consist of the combined W | L for guild members (as well as ratio)
+    Players individual W | L are taken into account when making payouts
+The members of each guild have a unique monster
+    Members level up their own personal versions of the monster
+    As monsters level up they get more powerful
+The map consists of the memedom and the “free cities”
+The memedom and free cities are separated by water
+Battles are turn-based with a quick countdown to enforce quick-thinking
+Items, Artifacts, and wild mascots can be found in the map on rare occasion or purchased using the in-game currency (name TBD)
+Some items are unique to certain realms
+In-game currency can be earned through combat
