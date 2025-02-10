@@ -128,6 +128,7 @@ export default function GameContainer() {
         '/memewars/img/playerRight.png',
         '/memewars/img/villager/Idle.png',
         '/memewars/img/oldMan/Idle.png',
+        '/memewars/img/Pellet Town.png', // Add map image
         // Add any other image paths your game uses
       ];
 
@@ -135,15 +136,23 @@ export default function GameContainer() {
         return new Promise((resolve, reject) => {
           const img = new Image();
           img.onload = () => resolve(img);
-          img.onerror = reject;
+          img.onerror = (e) => {
+            console.error(`Failed to load image: ${src}`, e);
+            reject(e);
+          };
           img.src = src;
         });
       };
 
       try {
         const loadedImages = await Promise.all(imagePaths.map(loadImage));
+        // Store images both by path and by filename
         window.gameImages = loadedImages.reduce((acc, img, i) => {
-          acc[imagePaths[i]] = img;
+          const path = imagePaths[i];
+          acc[path] = img;
+          // Also store by filename for backwards compatibility
+          const filename = path.split('/').pop() || path;
+          acc[filename] = img;
           return acc;
         }, {} as Record<string, HTMLImageElement>);
       } catch (error) {

@@ -1,0 +1,37 @@
+{
+  "name": "memeworld-server",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./db": "./src/db/index.ts"
+  },
+  "scripts": {
+    "start": "node --loader ts-node/esm src/index.ts",
+    "dev": "nodemon --exec node --loader ts-node/esm src/index.ts",
+    "db:init": "node --no-warnings --loader ts-node/esm src/db/init.ts | cat",
+    "test": "npm run db:init && npm run test:db && npm run test:api && npm run test:integration",
+    "test:db": "node --no-warnings --loader ts-node/esm src/tests/test-db.ts",
+    "test:api": "node --no-warnings --loader ts-node/esm src/tests/api-test.ts",
+    "test:integration": "node --no-warnings --loader ts-node/esm src/tests/integration-test.ts"
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.18.2",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^18.19.75",
+    "@types/pg": "^8.11.11",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
