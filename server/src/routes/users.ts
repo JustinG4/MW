@@ -22,21 +22,40 @@ router.post(
     }
 
     try {
+      // First check if user already exists
+      const existingUser = await db.query(
+        'SELECT * FROM users WHERE wallet_address = $1',
+        [walletAddress]
+      );
+
+      if (existingUser.rows[0]) {
+        // Update existing user's username and last login
+        const result = await db.query(`
+          UPDATE users 
+          SET username = $1, last_login = CURRENT_TIMESTAMP
+          WHERE wallet_address = $2
+          RETURNING *
+        `, [username, walletAddress]);
+
+        return res.json({ 
+          success: true, 
+          user: result.rows[0],
+          isNewUser: false 
+        });
+      }
+
+      // Create new user
       const result = await db.query(`
         INSERT INTO users (wallet_address, username)
         VALUES ($1, $2)
-        ON CONFLICT (wallet_address) 
-        DO UPDATE SET 
-          last_login = CURRENT_TIMESTAMP,
-          username = EXCLUDED.username
         RETURNING *
       `, [walletAddress, username]);
 
-      if (result.rows[0]) {
-        res.json({ success: true, user: result.rows[0] });
-      } else {
-        res.status(500).json({ error: 'Failed to create/update user' });
-      }
+      res.json({ 
+        success: true, 
+        user: result.rows[0],
+        isNewUser: true 
+      });
     } catch (err) {
       console.error('Failed to create/update user:', err);
       res.status(500).json({ error: 'Failed to create/update user' });
