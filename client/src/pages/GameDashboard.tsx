@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useRef } from 'react';
 import { createThirdwebClient } from "thirdweb";
-import { ConnectButton } from "thirdweb/react";
+import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import { createWallet } from "thirdweb/wallets";
 import { mainnet } from "thirdweb/chains";
 import { NeumorphicButton } from "@/components/ui/neumorphic-button";
@@ -35,13 +35,25 @@ interface DashboardSectionProps {
   isPositive: boolean;
 }
 
-export default function GameDashboard() {
+function GameDashboardContent() {
   const connectButtonRef = useRef<HTMLButtonElement>(null);
+  const account = useActiveAccount();
 
-  // Log when component mounts to verify the button exists
   useEffect(() => {
-    console.log('React: Component mounted, button ref:', connectButtonRef.current);
-  }, []);
+    if (account) {
+      console.log('React: Account connected:', account.address);
+      // Send wallet info to game iframe
+      const gameIframe = document.querySelector('iframe');
+      if (gameIframe && gameIframe.contentWindow) {
+        gameIframe.contentWindow.postMessage({
+          type: 'wallet:connected',
+          address: account.address,
+          chainId: account.chainId,
+          timestamp: Date.now()
+        }, '*');
+      }
+    }
+  }, [account]);
 
   useEffect(() => {
     console.log('React: Setting up message listener');
@@ -78,7 +90,6 @@ export default function GameDashboard() {
   return (
     <div className="min-h-screen bg-background p-8">
       {/* Hidden connect button */}
-      <ThirdwebProvider>
       <div id="wallet-connect-wrapper" style={{ position: 'absolute', top: 0, left: 0, opacity: 0, pointerEvents: 'none' }}>
         <ConnectButton
           client={client}
@@ -90,7 +101,6 @@ export default function GameDashboard() {
           chain={mainnet}
         />
       </div>
-      </ThirdwebProvider>
       
       {/* Main Content */}
       <div className="max-w-7xl mx-auto">
@@ -172,5 +182,13 @@ export default function GameDashboard() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function GameDashboard() {
+  return (
+    <ThirdwebProvider client={client}>
+      <GameDashboardContent />
+    </ThirdwebProvider>
   );
 }
