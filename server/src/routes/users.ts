@@ -1,6 +1,7 @@
 import express, { Request, Response, Router } from 'express';
 import { db } from '../db/index.js';
 
+
 const router: Router = express.Router();
 
 interface CreateUserRequest {
