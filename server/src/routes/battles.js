@@ -45,7 +45,8 @@ router.post('/', async (req, res) => {
       
       // Record battle moves
       if (moves && moves.length > 0) {
-        for (const move of moves) {
+        for (let i = 0; i < moves.length; i++) {
+          const move = moves[i];
           await client.query(`
             INSERT INTO battle_moves (
               battle_id, round_number, move_sequence, 
@@ -54,7 +55,7 @@ router.post('/', async (req, res) => {
               player1_health, player2_health
             ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
           `, [
-            battleId, move.roundNumber, move.moveSequence || 1,
+            battleId, move.roundNumber, i + 1, // Use index + 1 as move_sequence to ensure uniqueness
             move.player1Move, move.player2Move,
             move.player1Damage, move.player2Damage,
             move.player1Health, move.player2Health

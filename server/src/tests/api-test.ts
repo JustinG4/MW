@@ -63,10 +63,50 @@ async function testAPI() {
 
     // Test 4: Record Battle
     console.log('Test 4: Recording Battle');
-    const battleResponse = await fetch(`${baseUrl}/guilds/DOGE/battles`, {
+    const battleData = {
+      gameMode: 'PVE',
+      winnerAddress: userData.walletAddress,
+      loserAddress: null,
+      winnerGuild: 'DOGE',
+      loserGuild: null,
+      totalRounds: 3,
+      winnerFinalHealth: 75,
+      earnings: 100,
+      moves: [
+        {
+          roundNumber: 1,
+          player1Move: 'attack',
+          player2Move: 'defend',
+          player1Damage: 10,
+          player2Damage: 5,
+          player1Health: 95,
+          player2Health: 90
+        },
+        {
+          roundNumber: 2,
+          player1Move: 'special',
+          player2Move: 'attack',
+          player1Damage: 15,
+          player2Damage: 10,
+          player1Health: 85,
+          player2Health: 75
+        },
+        {
+          roundNumber: 3,
+          player1Move: 'attack',
+          player2Move: 'special',
+          player1Damage: 10,
+          player2Damage: 20,
+          player1Health: 75,
+          player2Health: 65
+        }
+      ]
+    };
+    
+    const battleResponse = await fetch(`${baseUrl}/battles`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ won: true, earnings: 100 })
+      body: JSON.stringify(battleData)
     });
     const battleResult = await battleResponse.json();
     console.log('✅ Battle recorded:', battleResult, '\n');
