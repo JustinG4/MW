@@ -1,0 +1,80 @@
+use anchor_lang::prelude::*;
+use anchor_spl::token::{self, Mint, Token, TokenAccount, Transfer};
+use solana_program::{program::invoke, system_instruction};
+use raydium_sdk::swap::{self, SwapInstruction};
+
+#[program]
+pub mod guild_entry {
+    use super::*;
+
+    pub fn enter_guild(ctx: Context<EnterGuild>, entry_fee: u64) -> Result<()> {
+        let user_wallet = &ctx.accounts.user;
+        let memecoin_account = &ctx.accounts.user_memecoin;
+        let guild_treasury = &ctx.accounts.guild_treasury;
+        let dev_fund = &ctx.accounts.dev_fund;
+
+        if memecoin_account.amount >= entry_fee {
+            // User has the required memecoin, charge the fee
+            let cpi_accounts = Transfer {
+                from: memecoin_account.to_account_info(),
+                to: guild_treasury.to_account_info(),
+                authority: user_wallet.to_account_info(),
+            };
+            let cpi_ctx = CpiContext::new(ctx.accounts.token_program.to_account_info(), cpi_accounts);
+            token::transfer(cpi_ctx, entry_fee * 80 / 100)?;
+
+            let cpi_accounts_dev = Transfer {
+                from: memecoin_account.to_account_info(),
+                to: dev_fund.to_account_info(),
+                authority: user_wallet.to_account_info(),
+            };
+            let cpi_ctx_dev = CpiContext::new(ctx.accounts.token_program.to_account_info(), cpi_accounts_dev);
+            token::transfer(cpi_ctx_dev, entry_fee * 20 / 100)?;
+        } else {
+            // User doesn't have enough memecoin, swap SOL for memecoin
+            swap_sol_for_memecoin(ctx, entry_fee)?;
+        }
+        
+        // Mint NFT reward for the user
+        mint_nft(ctx.accounts.user.key)?;
+
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct EnterGuild<'info> {
+    #[account(mut)]
+    pub user: Signer<'info>,
+    #[account(mut)]
+    pub user_memecoin: Account<'info, TokenAccount>,
+    #[account(mut)]
+    pub guild_treasury: Account<'info, TokenAccount>,
+    #[account(mut)]
+    pub dev_fund: Account<'info, TokenAccount>,
+    pub token_program: Program<'info, Token>,
+}
+
+fn swap_sol_for_memecoin(ctx: &Context<EnterGuild>, amount: u64) -> Result<()> {
+    let user_wallet = &ctx.accounts.user;
+    let sol_account = &ctx.accounts.user_memecoin; // Assuming SOL balance
+    
+    let swap_ix = SwapInstruction {
+        amount_in: amount,
+        min_amount_out: amount / 2, // Slippage tolerance setting
+        user_transfer_authority: *user_wallet.key,
+        pool_keys: vec![], // Fill this with actual Raydium pool keys
+    };
+    
+    invoke(
+        &swap_ix,
+        &[user_wallet.to_account_info(), sol_account.to_account_info()],
+    )?;
+    
+    Ok(())
+}
+
+fn mint_nft(user: &Pubkey) -> Result<()> {
+    // Implement minting logic for the NFT reward
+    Ok(())
+}

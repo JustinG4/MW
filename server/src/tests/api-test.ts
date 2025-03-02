@@ -56,7 +56,7 @@ async function testAPI() {
     const joinResponse = await fetch(`${baseUrl}/guilds/DOGE/join`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ walletAddress: userData.walletAddress })
+      body: JSON.stringify({ userAddress: userData.walletAddress })
     });
     const joinResult = await joinResponse.json();
     console.log('✅ Joined guild:', joinResult, '\n');

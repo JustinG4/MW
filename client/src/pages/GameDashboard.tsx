@@ -4,7 +4,7 @@ import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import { createWallet } from "thirdweb/wallets";
 import { mainnet } from "thirdweb/chains";
 import { NeumorphicButton } from "@/components/ui/neumorphic-button";
-import { Users, ChartNetwork, MessagesSquare, Wallet } from "lucide-react";
+import { Users, ChartNetwork, MessagesSquare, Wallet, X } from "lucide-react";
 import { motion } from "framer-motion";
 import TopBar from "@/components/layout/TopBar";
 import LeftMenu from "@/components/layout/LeftMenu";
@@ -137,22 +137,27 @@ function GameDashboardContent() {
           {/* Stats Container */}
           <div className="md:p-12 rounded-2xl bg-surface shadow-neumorphic min-h-[700px] w-full mb-8">
             <div className="flex items-center justify-center h-full relative">
-              <iframe 
-                src="/mw/index.html"
-                className="w-full h-full rounded-xl"
-                style={{ 
-                  minHeight: '576px',  // Match canvas height
-                  maxWidth: '1024px',   // Match canvas width
-                  border: 'none'
-                }}
-                allow="clipboard-write"
-                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-              />
-              
-              {/* Overlapping Border - Higher z-index */}
-              <div className="absolute inset-0 rounded-xl pointer-events-none z-10">
-                <div className="absolute inset-0 rounded-xl border-2 border-surface/50 shadow-[inset_0_0_8px_rgba(0,0,0,0.3)]" />
+              {/* Game Container */}
+              <div className="fixed inset-0 z-50">
+                <iframe 
+                  src="/mw/index.html"
+                  className="w-full h-full"
+                  style={{ 
+                    border: 'none',
+                    background: '#000'
+                  }}
+                  allow="clipboard-write"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                />
               </div>
+
+              {/* Optional: Add a close/minimize button */}
+              <button 
+                className="fixed top-4 right-4 z-50 p-2 bg-black/80 rounded-full hover:bg-black/60 transition-colors"
+                onClick={() => {/* Add minimize handler */}}
+              >
+                <X className="w-5 h-5 text-white" />
+              </button>
             </div>
           </div>
 
